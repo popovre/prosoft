@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import styles from './App.module.scss';
 import clsx from 'clsx';
+import { StoreProvider } from './redux/store-provider';
+
+import ButtonIncrement from './components/button-increment/component';
 
 function App() {
   const themePreferences = window.matchMedia(
@@ -18,18 +21,21 @@ function App() {
   }, [isDark, themePreferences]);
 
   return (
-    <div className={styles.root} data-theme={isDark ? 'dark' : 'light'}>
-      <div className={styles.content}>Vite + React</div>
-      <button
-        className={clsx(styles.themeToggle)}
-        onClick={() => {
-          localStorage.setItem('isDark', JSON.stringify(!isDark));
-          setIsDark(!isDark);
-        }}
-      >
-        Theme toggle
-      </button>
-    </div>
+    <StoreProvider>
+      <div className={styles.root} data-theme={isDark ? 'dark' : 'light'}>
+        <div className={styles.content}>Vite + React</div>
+        <ButtonIncrement />
+        <button
+          className={clsx(styles.themeToggle)}
+          onClick={() => {
+            localStorage.setItem('isDark', JSON.stringify(!isDark));
+            setIsDark(!isDark);
+          }}
+        >
+          Theme toggle
+        </button>
+      </div>
+    </StoreProvider>
   );
 }
 
