@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import styles from './App.module.scss';
-import clsx from 'clsx';
 import { StoreProvider } from './redux/store-provider';
 
 import ButtonIncrement from './components/button-increment/component';
+import Header from './components/header/component';
+import Footer from './components/footer/component';
 
 function App() {
   const themePreferences = window.matchMedia(
@@ -11,6 +12,11 @@ function App() {
   ).matches;
 
   const [isDark, setIsDark] = useState(themePreferences);
+
+  const toggleTheme = () => {
+    localStorage.setItem('isDark', JSON.stringify(!isDark));
+    setIsDark(!isDark);
+  };
 
   useEffect(() => {
     const localThemeMode = localStorage.getItem('isDark');
@@ -23,17 +29,12 @@ function App() {
   return (
     <StoreProvider>
       <div className={styles.root} data-theme={isDark ? 'dark' : 'light'}>
-        <div className={styles.content}>Vite + React</div>
-        <ButtonIncrement />
-        <button
-          className={clsx(styles.themeToggle)}
-          onClick={() => {
-            localStorage.setItem('isDark', JSON.stringify(!isDark));
-            setIsDark(!isDark);
-          }}
-        >
-          Theme toggle
-        </button>
+        <Header toggleTheme={toggleTheme} />
+        <main className={styles.main}>
+          <div className={styles.content}>Vite + React</div>
+          <ButtonIncrement />
+        </main>
+        <Footer />
       </div>
     </StoreProvider>
   );

@@ -1,0 +1,114 @@
+//helpers
+
+@mixin listres {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@mixin inputres {
+  margin: 0;
+  padding: 0;
+
+  font: inherit;
+  color: inherit;
+
+  background-color: transparent;
+  border: 0;
+  border-radius: 0;
+
+  -webkit-tap-highlight-color: transparent;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+@mixin btnres {
+  padding: 0;
+  background: none;
+  border: 0;
+}
+
+@mixin fieldres {
+  border: 0;
+}
+
+// sass variables for mixins
+
+$ultra-desktop-width: 1441px;
+$desktop-width: 1440px;
+$ultra-tablet-width: 1024px;
+$tablet-width: 768px;
+$low-tablet-width: 500px;
+$ultra-mobile-width: 425px;
+$mobile-width: 375px;
+
+@mixin mobile-w {
+  @media (min-width: $mobile-width) {
+    @content;
+  }
+}
+
+@mixin ultra-mobile-w {
+  @media (min-width: $ultra-mobile-width) {
+    @content;
+  }
+}
+
+@mixin low-tablet-w {
+  @media (min-width: $low-tablet-width) {
+    @content;
+  }
+}
+
+@mixin tablet-w {
+  @media (min-width: $tablet-width) {
+    @content;
+  }
+}
+
+@mixin ultra-tablet-w {
+  @media (min-width: $ultra-tablet-width) {
+    @content;
+  }
+}
+
+@mixin desktop-w {
+  @media (min-width: $desktop-width) {
+    @content;
+  }
+}
+
+@mixin ultra-desktop-w {
+  @media (min-width: $ultra-desktop-width) {
+    @content;
+  }
+}
+
+@mixin retina {
+  @media (min-resolution: 2dppx) {
+    @content;
+    background-repeat: no-repeat;
+  }
+}
+
+// custom
+@mixin content {
+  width: 100%;
+  margin: 0 auto;
+  padding-inline: var(--mobile-padding-inline);
+
+  @include tablet-w() {
+    padding-inline: var(--tablet-padding-inline);
+  }
+
+  @include ultra-tablet-w() {
+    padding-inline: var(--ultra-tablet-padding-inline);
+  }
+
+  @include desktop-w() {
+    max-width: var(--desktop-width);
+    padding-inline: var(--desktop-padding-inline);
+  }
+}
