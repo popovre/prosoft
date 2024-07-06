@@ -1,0 +1,20 @@
+.root {
+  display: flex;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+}
+
+.search {
+  padding-inline: 5px;
+  padding-block: 5px;
+  border-radius: 6px;
+  border: none;
+  background-color: inherit;
+  color: inherit;
+  font-size: var(--asc-low-font);
+  border: 2px solid var(--asc-border);
+}

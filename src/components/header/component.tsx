@@ -5,7 +5,7 @@ const Header = ({ toggleTheme }) => {
     <header className={styles.root}>
       <h1 className={styles.title}>Приложение для просмотра фильмов</h1>
       <button className={styles.button} onClick={toggleTheme}>
-        Theme toggle
+        Сменить тему
       </button>
     </header>
   );

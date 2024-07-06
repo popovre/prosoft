@@ -5,6 +5,7 @@ import { StoreProvider } from './redux/store-provider';
 import ButtonIncrement from './components/button-increment/component';
 import Header from './components/header/component';
 import Footer from './components/footer/component';
+import Table from './components/table/component';
 
 function App() {
   const themePreferences = window.matchMedia(
@@ -31,8 +32,7 @@ function App() {
       <div className={styles.root} data-theme={isDark ? 'dark' : 'light'}>
         <Header toggleTheme={toggleTheme} />
         <main className={styles.main}>
-          <div className={styles.content}>Vite + React</div>
-          <ButtonIncrement />
+          <Table />
         </main>
         <Footer />
       </div>
