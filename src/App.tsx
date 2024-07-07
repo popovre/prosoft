@@ -2,9 +2,7 @@ import { useEffect, useState } from 'react';
 import styles from './App.module.scss';
 import { StoreProvider } from './redux/store-provider';
 
-import ButtonIncrement from './components/button-increment/component';
 import Header from './components/header/component';
-import Footer from './components/footer/component';
 import Table from './components/table/component';
 
 function App() {
@@ -34,7 +32,6 @@ function App() {
         <main className={styles.main}>
           <Table />
         </main>
-        <Footer />
       </div>
     </StoreProvider>
   );

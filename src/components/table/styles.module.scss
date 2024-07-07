@@ -1,2 +1,5 @@
 .root {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(300px, 450px) 1fr;
 }

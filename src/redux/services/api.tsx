@@ -1,16 +1,19 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const BASE_URL = 3001;
-
 export const api = createApi({
   reducerPath: 'api',
-  tagTypes: ['cinemas'],
-  baseQuery: fetchBaseQuery({
-    baseUrl: `http://localhost:${BASE_URL}/api/`,
-  }),
+  tagTypes: ['Cinemas'],
+  baseQuery: fetchBaseQuery({ baseUrl: `http://185.185.69.80:8082` }),
   endpoints: (builder) => ({
     getCinemas: builder.query({
-      query: () => ({ url: 'cinemas' }),
+      query: (body) => ({
+        url: 'list',
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: {
+          'content-type': 'application/json',
+        },
+      }),
     }),
   }),
 });
