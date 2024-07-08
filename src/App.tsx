@@ -15,7 +15,6 @@ const router = createBrowserRouter([
       {
         path: '/cinemas-table',
         element: <CinemasTablePage />,
-        children: [{ path: 'all', element: <CinemasAllPage /> }],
       },
     ],
   },

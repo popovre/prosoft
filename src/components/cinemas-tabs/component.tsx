@@ -1,27 +1,27 @@
-import { NavLink, Outlet } from 'react-router-dom';
 import styles from './style.module.scss';
 import Button from '../button/component';
 
-const CinemasTabs = () => {
+const CinemasTabs = ({ showAll, setShowAll }) => {
   return (
     <div className={styles.root}>
-      <div className={styles.linkWrapper}>
-        <NavLink to="/cinemas-table/all">
-          {({ isActive }) => (
-            <Button className={styles.button} disabled={isActive}>
-              all
-            </Button>
-          )}
-        </NavLink>
-        <NavLink to="/cinemas-table/pages">
-          {({ isActive }) => (
-            <Button className={styles.button} disabled={isActive}>
-              pagination
-            </Button>
-          )}
-        </NavLink>
-      </div>
-      <Outlet />
+      <Button
+        className={styles.button}
+        disabled={showAll}
+        onClick={() => {
+          setShowAll(true);
+        }}
+      >
+        all
+      </Button>
+      <Button
+        className={styles.button}
+        disabled={!showAll}
+        onClick={() => {
+          setShowAll(false);
+        }}
+      >
+        pagination
+      </Button>
     </div>
   );
 };
