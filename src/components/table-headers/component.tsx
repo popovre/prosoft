@@ -1,20 +1,30 @@
 import styles from './style.module.scss';
+import { headers } from './utils';
 
-const TableHeaders = () => {
+const TableHeaders = ({ sort, setSort }) => {
   return (
     <div className={styles.root}>
       <h2>Sorting and Filter</h2>
       <ul className={styles.list}>
-        <li>imdb_id</li>
-        <li>budget</li>
-        <li>original_language</li>
-        <li>popularity</li>
-        <li>release_date</li>
-        <li>revenue</li>
-        <li>runtime</li>
-        <li>status</li>
-        <li>vote_average</li>
-        <li>vote_average</li>
+        {headers.map((header, index) => (
+          <li
+            key={index}
+            onClick={() => {
+              console.log(header.key);
+              setSort({
+                keyToSort: header.key,
+                direction:
+                  header.key === sort.keyToSort
+                    ? sort.direction === 'asc'
+                      ? 'desc'
+                      : 'asc'
+                    : 'desc',
+              });
+            }}
+          >
+            {header.key}
+          </li>
+        ))}
       </ul>
       <label className={styles.label}>
         Поиск

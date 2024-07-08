@@ -7,7 +7,7 @@ const Table = () => {
   const [sort, setSort] = useState({ keyToSort: 'imdb_id', direction: 'asc' });
   return (
     <div className={styles.root}>
-      <TableHeaders />
+      <TableHeaders sort={sort} setSort={setSort} />
       <TableBody />
     </div>
   );
