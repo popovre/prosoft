@@ -5,10 +5,22 @@ import styles from './styles.module.scss';
 
 const Table = () => {
   const [sort, setSort] = useState({ keyToSort: 'imdb_id', direction: 'asc' });
+
+  const getSortedArray = (arrayToSort) => {
+    if (sort.direction === 'asc') {
+      return arrayToSort.sort((a, b) =>
+        a[sort.keyToSort] > b[sort.keyToSort] ? 1 : -1
+      );
+    }
+    return arrayToSort.sort((a, b) =>
+      a[sort.keyToSort] > b[sort.keyToSort] ? -1 : 1
+    );
+  };
+
   return (
     <div className={styles.root}>
       <TableHeaders sort={sort} setSort={setSort} />
-      <TableBody />
+      <TableBody getSortedArray={getSortedArray} />
     </div>
   );
 };
