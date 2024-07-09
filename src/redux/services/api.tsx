@@ -18,4 +18,4 @@ export const api = createApi({
   }),
 });
 
-export const { useGetCinemasQuery } = api;
+export const { useGetCinemasQuery, useLazyGetCinemasQuery } = api;

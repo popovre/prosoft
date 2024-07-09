@@ -8,5 +8,4 @@ export const headers = [
   { key: 'runtime' },
   { key: 'status' },
   { key: 'vote_average' },
-  { key: 'imdb_id' },
 ];
