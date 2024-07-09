@@ -1,11 +1,16 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
+
+const entityAdapter = createEntityAdapter();
 
 export const cinemasSlice = createSlice({
   name: 'cinemas',
-  initialState: [],
+  initialState: { items: [] },
   reducers: {
-    setCinemas(state, cinema) {
-      state = [...state, ...cinema.payload];
+    setCinemas(state, action) {
+      state.items = action.payload;
+    },
+    addCinemas(state, action) {
+      state.items = [...state.items, ...action.payload];
     },
   },
 });

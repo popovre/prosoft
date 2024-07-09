@@ -1,12 +1,13 @@
 import styles from './style.module.scss';
 
-const Cinemas = ({ cinemas, getSortedArray }) => {
+const Cinemas = ({ showAll, cinemas, getSortedArray }) => {
   console.log(cinemas);
   return (
     <ul className={styles.list}>
-      {getSortedArray(cinemas.slice(0, 100))?.map((cinema) => (
-        <li key={cinema.id}>{cinema.id}</li>
-      ))}
+      {cinemas &&
+        getSortedArray(cinemas?.slice(0, 100))?.map((cinema) => (
+          <li key={cinema.id}>{cinema.id}</li>
+        ))}
     </ul>
   );
 };

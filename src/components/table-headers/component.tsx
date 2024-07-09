@@ -5,15 +5,16 @@ import Button from '../button/component';
 import { useRef } from 'react';
 import { useLazyGetCinemasQuery } from '../../redux/services/api';
 
-const TableHeaders = ({ sort, setSort }) => {
+const TableHeaders = ({ sort, setSort, setSearch }) => {
   const input = useRef<HTMLInputElement>(null);
 
-  const [trigger, result, lastPromiseInfo] = useLazyGetCinemasQuery();
-  console.log(result.data, 'result');
+  // const [trigger, result, lastPromiseInfo] = useLazyGetCinemasQuery();
+  // console.log(result.data, 'result');
 
   const onSearchButtonClick = () => {
     if (input.current.value) {
-      trigger({ search: String(input.current.value) });
+      // trigger({ search: String(input.current.value) });
+      setSearch({ search: String(input.current.value) });
     }
   };
 

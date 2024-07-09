@@ -13,6 +13,7 @@ export const api = createApi({
         headers: {
           'content-type': 'application/json',
         },
+        providesTags: ['Cinemas'],
       }),
     }),
   }),

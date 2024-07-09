@@ -7,13 +7,19 @@ const CinemasContainer = ({ showAll, getSortedArray }) => {
     data: cinemas,
     isLoading,
     error,
-  } = useGetCinemasQuery({ page: 15, page_size: 30 });
+  } = useGetCinemasQuery({}, { skip: !showAll });
 
   if (isLoading) return <Loader />;
 
   if (error) return <div>Error</div>;
 
-  return <Cinemas getSortedArray={getSortedArray} cinemas={cinemas?.data} />;
+  return (
+    <Cinemas
+      getSortedArray={getSortedArray}
+      showAll={showAll}
+      cinemas={cinemas?.data}
+    />
+  );
 };
 
 export default CinemasContainer;
