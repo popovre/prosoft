@@ -1,0 +1,11 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  border: 2px solid var(--asc-border);
+  padding: 1rem;
+  border-radius: var(--mobile-low-border-radius);
+  height: 100%;
+  // width: 400px;
+}

@@ -5,7 +5,6 @@ import styles from './styles.module.scss';
 
 const Table = () => {
   const [sort, setSort] = useState({ keyToSort: 'imdb_id', direction: 'asc' });
-  // const [search, setSearch] = useState({ search: '' });
 
   const getSortedArray = (arrayToSort) => {
     if (sort.direction === 'asc') {

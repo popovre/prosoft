@@ -10,10 +10,11 @@ import { selectOptions } from '../../redux/query-option';
 const CinemasContainer = ({ showAll, getSortedArray }) => {
   const [cinemasRequestId, setCinemaRequestId] = useState(null);
 
-  const cinemas = useSelector((state) => cinemaSelectors.selectAll(state));
+  const cinemas = useSelector((state) =>
+    getSortedArray(cinemaSelectors.selectAll(state).slice())
+  );
 
   const options = useSelector((state) => selectOptions(state));
-  console.log(options);
 
   const isCinemasLoading = useSelector(
     (state) => cinemasRequestId && selectIsLoading(state, cinemasRequestId)
@@ -30,11 +31,7 @@ const CinemasContainer = ({ showAll, getSortedArray }) => {
       {isCinemasLoading ? (
         <Loader />
       ) : (
-        <Cinemas
-          getSortedArray={getSortedArray}
-          showAll={showAll}
-          cinemas={cinemas}
-        />
+        <Cinemas showAll={showAll} cinemas={cinemas} />
       )}
     </>
   );

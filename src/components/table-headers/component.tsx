@@ -3,9 +3,8 @@ import { headers } from './utils';
 import clsx from 'clsx';
 import Button from '../button/component';
 import { useRef } from 'react';
-import { useLazyGetCinemasQuery } from '../../redux/services/api';
-import { useDispatch, useSelector } from 'react-redux';
-import { setSearch } from '../../redux/query-option';
+import { useDispatch } from 'react-redux';
+import { setQuerySearch } from '../../redux/query-option';
 
 const TableHeaders = ({ sort, setSort }) => {
   const input = useRef<HTMLInputElement>(null);
@@ -14,7 +13,7 @@ const TableHeaders = ({ sort, setSort }) => {
 
   const onSearchButtonClick = () => {
     if (input.current?.value) {
-      dispatch(setSearch(String(input.current?.value)));
+      dispatch(setQuerySearch(String(input.current?.value)));
     }
   };
 
@@ -30,7 +29,6 @@ const TableHeaders = ({ sort, setSort }) => {
             )}
             key={index}
             onClick={() => {
-              console.log(header.key);
               setSort({
                 keyToSort: header.key,
                 direction:

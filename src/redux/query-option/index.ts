@@ -1,30 +1,44 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, Slice } from '@reduxjs/toolkit';
 
-export const queryOptionSlice = createSlice({
+export const queryOptionSlice: Slice = createSlice({
   name: 'queryOption',
   initialState: {
-    options: { sort: '', page: 0, page_size: undefined, search: '' },
+    options: {
+      sort: '',
+      page: 0,
+      page_size: undefined,
+      search: '',
+      sort_order: 'asc',
+    },
   },
   selectors: {
     selectOptions: (state) => state.options,
   },
   reducers: {
-    setSort(state, sort) {
+    setQuerySort(state, sort) {
       state.options.sort = sort.payload;
     },
-    setSearch(state, search) {
+    setQuerySearch(state, search) {
       state.options.search = search.payload;
     },
-    setStartPage(state, startPage) {
+    setQueryStartPage(state, startPage) {
       state.options.page = startPage.payload;
     },
-    setPageAmount(state, pageAmount) {
+    setQueryPageAmount(state, pageAmount) {
       state.options.page_size = pageAmount.payload;
+    },
+    setQuerySortOrder(state, sortOrder) {
+      state.options.sort_order = sortOrder.payload;
     },
   },
 });
 
-export const { setSort, setStartPage, setPageAmount, setSearch } =
-  queryOptionSlice.actions;
+export const {
+  setQuerySort,
+  setQueryStartPage,
+  setQueryPageAmount,
+  setQuerySearch,
+  setQuerySortOrder,
+} = queryOptionSlice.actions;
 
 export const { selectOptions } = queryOptionSlice.selectors;
