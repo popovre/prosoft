@@ -15,6 +15,7 @@ const INITIAL_STATE = {
   popularity: true,
   productionCompanies: true,
   productionCountries: true,
+  releaseDate: true,
   revenue: true,
   runtime: true,
   spokenLanguages: true,
@@ -91,6 +92,11 @@ const reducer = (state, { type, payload }) => {
       return {
         ...state,
         productionCountries: payload,
+      };
+    case 'setShowReleaseDate':
+      return {
+        ...state,
+        releaseDate: payload,
       };
     case 'setShowRevenue':
       return {
@@ -184,6 +190,9 @@ export const useCinemaVision = (initialState = INITIAL_STATE) => {
   const setShowProductionCountries = useCallback((status) => {
     dispatch({ type: 'setShowProductionCountries', payload: status });
   }, []);
+  const setShowReleaseDate = useCallback((status) => {
+    dispatch({ type: 'setShowReleaseDate', payload: status });
+  }, []);
   const setShowRevenue = useCallback((status) => {
     dispatch({ type: 'setShowRevenue', payload: status });
   }, []);
@@ -232,5 +241,6 @@ export const useCinemaVision = (initialState = INITIAL_STATE) => {
     setShowTitle,
     setShowVoteAverage,
     setShowVoteCount,
+    setShowReleaseDate,
   };
 };

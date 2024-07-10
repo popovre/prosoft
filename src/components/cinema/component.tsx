@@ -28,6 +28,7 @@ const Cinema = ({ cinema }) => {
     setShowTitle,
     setShowVoteAverage,
     setShowVoteCount,
+    setShowReleaseDate,
   } = useCinemaVision();
 
   return (
@@ -205,6 +206,22 @@ const Cinema = ({ cinema }) => {
           cinema.production_countries
             ?.map((production_country) => production_country.name)
             .join(', ')
+        ) : (
+          <IoIosEyeOff />
+        )}
+      </li>
+      <li
+        onClick={() => {
+          setShowReleaseDate(!content.releaseDate);
+        }}
+      >
+        release_date:{' '}
+        {content.releaseDate ? (
+          cinema.release_date ? (
+            cinema.release_date
+          ) : (
+            `-`
+          )
         ) : (
           <IoIosEyeOff />
         )}
