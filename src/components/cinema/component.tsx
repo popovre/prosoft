@@ -1,63 +1,325 @@
 import { Link } from 'react-router-dom';
 import styles from './style.module.scss';
 import { IoIosLink } from 'react-icons/io';
+import { useCinemaVision } from './use-cinema-vision';
+import { IoIosEyeOff } from 'react-icons/io';
 
 const Cinema = ({ cinema }) => {
+  const {
+    content,
+    setShowId,
+    setShowAdult,
+    setShowBelongs,
+    setShowBudget,
+    setShowGenres,
+    setShowHomepage,
+    setShowImdbId,
+    setShowOriginalLanguage,
+    setShowOriginalTitle,
+    setShowOverview,
+    setShowPopularity,
+    setShowProductionCompanies,
+    setShowProductionCountries,
+    setShowRevenue,
+    setShowRuntime,
+    setShowSpokenLanguages,
+    setShowStatus,
+    setShowTagline,
+    setShowTitle,
+    setShowVoteAverage,
+    setShowVoteCount,
+  } = useCinemaVision();
+
   return (
-    <div className={styles.root}>
-      <p>id: {cinema.id}</p>
-      <p>adults: {cinema.adults ? cinema.adults : `-`}</p>
-      <p>
-        belongs to collection: {cinema.belongs_to_collection ? 'Yes' : 'No'}
-      </p>
-      <p>budget: {cinema.budget ? cinema.budget : `-`}</p>
-      <p>genres: {cinema.genres?.map((genre) => genre.name).join(', ')}</p>
-      <p>
-        homepage:
-        {cinema.homepage ? (
-          <Link to={cinema.homepage}>
-            <IoIosLink />
-          </Link>
+    <ul className={styles.root}>
+      <li
+        onClick={() => {
+          setShowId(!content.id);
+        }}
+      >
+        id: {content.id ? cinema.id : <IoIosEyeOff />}
+      </li>
+      <li
+        onClick={() => {
+          setShowAdult(!content.adult);
+        }}
+      >
+        adults:{' '}
+        {content.adult ? cinema.adults ? cinema.adults : `-` : <IoIosEyeOff />}
+      </li>
+      <li
+        onClick={() => {
+          setShowBelongs(!content.belongs);
+        }}
+      >
+        belongs to collection:{' '}
+        {content.belongs ? (
+          cinema.belongs_to_collection ? (
+            'Yes'
+          ) : (
+            'No'
+          )
         ) : (
-          `-`
+          <IoIosEyeOff />
         )}
-      </p>
-      <p>imdb_id: {cinema.imdb_id ? cinema.imdb_id : `-`}</p>
-      <p>
+      </li>
+      <li
+        onClick={() => {
+          setShowBudget(!content.budget);
+        }}
+      >
+        budget:{' '}
+        {content.budget ? cinema.budget ? cinema.budget : `-` : <IoIosEyeOff />}
+      </li>
+      <li
+        onClick={() => {
+          setShowGenres(!content.genres);
+        }}
+      >
+        genres:{' '}
+        {content.genres ? (
+          cinema.genres?.map((genre) => genre.name).join(', ')
+        ) : (
+          <IoIosEyeOff />
+        )}
+      </li>
+      <li
+        onClick={() => {
+          setShowHomepage(!content.homepage);
+        }}
+      >
+        homepage:
+        {content.homepage ? (
+          cinema.homepage ? (
+            <Link to={cinema.homepage}>
+              <IoIosLink />
+            </Link>
+          ) : (
+            `-`
+          )
+        ) : (
+          <IoIosEyeOff />
+        )}
+      </li>
+      <li
+        onClick={() => {
+          setShowImdbId(!content.imdbId);
+        }}
+      >
+        imdb_id:{' '}
+        {content.imdbId ? (
+          cinema.imdb_id ? (
+            cinema.imdb_id
+          ) : (
+            `-`
+          )
+        ) : (
+          <IoIosEyeOff />
+        )}
+      </li>
+      <li
+        onClick={() => {
+          setShowOriginalLanguage(!content.originalLanguage);
+        }}
+      >
         original language:{' '}
-        {cinema.original_language ? cinema.original_language : `-`}
-      </p>
-      <p>
-        original title: {cinema.original_title ? cinema.original_title : `-`}
-      </p>
-      <p>overview: {cinema.overview}</p>
-      <p>popularity: {cinema.popularity}</p>
-      <p>
+        {content.originalLanguage ? (
+          cinema.original_language ? (
+            cinema.original_language
+          ) : (
+            `-`
+          )
+        ) : (
+          <IoIosEyeOff />
+        )}
+      </li>
+      <li
+        onClick={() => {
+          setShowOriginalTitle(!content.originalTitle);
+        }}
+      >
+        original title:{' '}
+        {content.originalTitle ? (
+          cinema.original_title ? (
+            cinema.original_title
+          ) : (
+            `-`
+          )
+        ) : (
+          <IoIosEyeOff />
+        )}
+      </li>
+      <li
+        onClick={() => {
+          setShowOverview(!content.overview);
+        }}
+      >
+        overview:{' '}
+        {content.overview ? (
+          cinema.overview ? (
+            cinema.overview
+          ) : (
+            `-`
+          )
+        ) : (
+          <IoIosEyeOff />
+        )}
+      </li>
+      <li
+        onClick={() => {
+          setShowPopularity(!content.popularity);
+        }}
+      >
+        popularity:{' '}
+        {content.popularity ? (
+          cinema.popularity ? (
+            cinema.popularity
+          ) : (
+            `-`
+          )
+        ) : (
+          <IoIosEyeOff />
+        )}
+      </li>
+      <li
+        onClick={() => {
+          setShowProductionCompanies(!content.productionCompanies);
+        }}
+      >
         production companies:{' '}
-        {cinema.production_companies
-          ?.map((production_company) => production_company.name)
-          .join(', ')}
-      </p>
-      <p>
+        {content.productionCompanies ? (
+          cinema.production_companies
+            ?.map((production_company) => production_company.name)
+            .join(', ')
+        ) : (
+          <IoIosEyeOff />
+        )}
+      </li>
+      <li
+        onClick={() => {
+          setShowProductionCountries(!content.productionCountries);
+        }}
+      >
         production countries:{' '}
-        {cinema.production_countries
-          ?.map((production_country) => production_country.name)
-          .join(', ')}
-      </p>
-      <p>revenue: {cinema.revenue ? cinema.revenue : `-`}</p>
-      <p>runtime: {cinema.runtime ? cinema.runtime : `-`}</p>
-      <p>
+        {content.productionCountries ? (
+          cinema.production_countries
+            ?.map((production_country) => production_country.name)
+            .join(', ')
+        ) : (
+          <IoIosEyeOff />
+        )}
+      </li>
+      <li
+        onClick={() => {
+          setShowRevenue(!content.revenue);
+        }}
+      >
+        revenue:{' '}
+        {content.revenue ? (
+          cinema.revenue ? (
+            cinema.revenue
+          ) : (
+            `-`
+          )
+        ) : (
+          <IoIosEyeOff />
+        )}
+      </li>
+      <li
+        onClick={() => {
+          setShowRuntime(!content.runtime);
+        }}
+      >
+        runtime:{' '}
+        {content.runtime ? (
+          cinema.runtime ? (
+            cinema.runtime
+          ) : (
+            `-`
+          )
+        ) : (
+          <IoIosEyeOff />
+        )}
+      </li>
+      <li
+        onClick={() => {
+          setShowSpokenLanguages(!content.spokenLanguages);
+        }}
+      >
         spoken languages:{' '}
-        {cinema.spoken_languages
-          ?.map((spoken_language) => spoken_language.name)
-          .join(', ')}
-      </p>
-      <p>status: {cinema.status ? cinema.status : `-`}</p>
-      <p>tagline: {cinema.tagline ? cinema.tagline : `-`}</p>
-      <p>title: {cinema.title ? cinema.title : `-`}</p>
-      <p>vote average: {cinema.vote_average ? cinema.vote_average : `-`}</p>
-      <p>vote count: {cinema.vote_count ? cinema.vote_count : `-`}</p>
-    </div>
+        {content.spokenLanguages ? (
+          cinema.spoken_languages
+            ?.map((spoken_language) => spoken_language.name)
+            .join(', ')
+        ) : (
+          <IoIosEyeOff />
+        )}
+      </li>
+      <li
+        onClick={() => {
+          setShowStatus(!content.status);
+        }}
+      >
+        status:{' '}
+        {content.status ? cinema.status ? cinema.status : `-` : <IoIosEyeOff />}
+      </li>
+      <li
+        onClick={() => {
+          setShowTagline(!content.tagline);
+        }}
+      >
+        tagline:{' '}
+        {content.tagline ? (
+          cinema.tagline ? (
+            cinema.tagline
+          ) : (
+            `-`
+          )
+        ) : (
+          <IoIosEyeOff />
+        )}
+      </li>
+      <li
+        onClick={() => {
+          setShowTitle(!content.title);
+        }}
+      >
+        title:{' '}
+        {content.title ? cinema.title ? cinema.title : `-` : <IoIosEyeOff />}
+      </li>
+      <li
+        onClick={() => {
+          setShowVoteAverage(!content.voteAverage);
+        }}
+      >
+        vote average:{' '}
+        {content.voteAverage ? (
+          cinema.vote_average ? (
+            cinema.vote_average
+          ) : (
+            `-`
+          )
+        ) : (
+          <IoIosEyeOff />
+        )}
+      </li>
+      <li
+        onClick={() => {
+          setShowVoteCount(!content.voteCount);
+        }}
+      >
+        vote count:{' '}
+        {content.voteCount ? (
+          cinema.vote_count ? (
+            cinema.vote_count
+          ) : (
+            `-`
+          )
+        ) : (
+          <IoIosEyeOff />
+        )}
+      </li>
+    </ul>
   );
 };
 
