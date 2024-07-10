@@ -1,35 +1,29 @@
-import { useEffect, useState } from 'react';
-import styles from './App.module.scss';
-import clsx from 'clsx';
+import { StoreProvider } from './redux/store-provider';
+
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Layout from './components/layout/component';
+import HomePage from './pages/home-page/component';
+import CinemasTablePage from './pages/cinemas-table-page/component';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Layout />,
+    children: [
+      { index: true, element: <HomePage /> },
+      {
+        path: '/cinemas-table',
+        element: <CinemasTablePage />,
+      },
+    ],
+  },
+]);
 
 function App() {
-  const themePreferences = window.matchMedia(
-    '(prefers-color-scheme: dark)'
-  ).matches;
-
-  const [isDark, setIsDark] = useState(themePreferences);
-
-  useEffect(() => {
-    const localThemeMode = localStorage.getItem('isDark');
-    const darkMode =
-      localThemeMode === null ? themePreferences : JSON.parse(localThemeMode);
-
-    setIsDark(darkMode);
-  }, [isDark, themePreferences]);
-
   return (
-    <div className={styles.root} data-theme={isDark ? 'dark' : 'light'}>
-      <div className={styles.content}>Vite + React</div>
-      <button
-        className={clsx(styles.themeToggle)}
-        onClick={() => {
-          localStorage.setItem('isDark', JSON.stringify(!isDark));
-          setIsDark(!isDark);
-        }}
-      >
-        Theme toggle
-      </button>
-    </div>
+    <StoreProvider>
+      <RouterProvider router={router} />
+    </StoreProvider>
   );
 }
 

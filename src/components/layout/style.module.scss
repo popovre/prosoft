@@ -2,6 +2,11 @@
   min-height: 100vh;
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+}
+
+.main {
+  flex-grow: 1;
+  width: 100%;
 }
