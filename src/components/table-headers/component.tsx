@@ -4,17 +4,17 @@ import clsx from 'clsx';
 import Button from '../button/component';
 import { useRef } from 'react';
 import { useLazyGetCinemasQuery } from '../../redux/services/api';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSearch } from '../../redux/query-option';
 
-const TableHeaders = ({ sort, setSort, setSearch }) => {
+const TableHeaders = ({ sort, setSort }) => {
   const input = useRef<HTMLInputElement>(null);
 
-  // const [trigger, result, lastPromiseInfo] = useLazyGetCinemasQuery();
-  // console.log(result.data, 'result');
+  const dispatch = useDispatch();
 
   const onSearchButtonClick = () => {
-    if (input.current.value) {
-      // trigger({ search: String(input.current.value) });
-      setSearch({ search: String(input.current.value) });
+    if (input.current?.value) {
+      dispatch(setSearch(String(input.current?.value)));
     }
   };
 

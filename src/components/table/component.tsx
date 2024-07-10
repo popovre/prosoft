@@ -5,7 +5,7 @@ import styles from './styles.module.scss';
 
 const Table = () => {
   const [sort, setSort] = useState({ keyToSort: 'imdb_id', direction: 'asc' });
-  const [search, setSearch] = useState({ search: '' });
+  // const [search, setSearch] = useState({ search: '' });
 
   const getSortedArray = (arrayToSort) => {
     if (sort.direction === 'asc') {
@@ -20,7 +20,7 @@ const Table = () => {
 
   return (
     <div className={styles.root}>
-      <TableHeaders sort={sort} setSort={setSort} setSearch={setSearch} />
+      <TableHeaders sort={sort} setSort={setSort} />
       <TableBody getSortedArray={getSortedArray} />
     </div>
   );
