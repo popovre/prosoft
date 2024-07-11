@@ -12,9 +12,9 @@ const CinemasContainer = ({ showAll, getSortedArray }) => {
   const [pagesQty, setPagesQty] = useState(0);
   const [page, setPage] = useState(1);
 
-  const cinemas = useSelector((state) =>
-    getSortedArray(cinemaSelectors.selectAll(state).slice())
-  );
+  const cinemas = useSelector((state) => cinemaSelectors.selectAll(state));
+
+  const filteredCinemas = getSortedArray([...cinemas]);
 
   const options = useSelector((state) => selectOptions(state));
 
@@ -45,7 +45,7 @@ const CinemasContainer = ({ showAll, getSortedArray }) => {
           page={page}
           setPage={setPage}
           showAll={showAll}
-          cinemas={cinemas}
+          cinemas={filteredCinemas}
         />
       )}
     </>

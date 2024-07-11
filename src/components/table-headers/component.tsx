@@ -13,9 +13,7 @@ const TableHeaders = ({ sort, setSort }) => {
   const dispatch = useDispatch();
 
   const onSearchButtonClick = () => {
-    if (value) {
-      dispatch(setQuerySearch(String(value)));
-    }
+    dispatch(setQuerySearch(String(value)));
   };
 
   return (
