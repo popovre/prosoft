@@ -3,6 +3,8 @@ import Header from '../header/component';
 import styles from './style.module.scss';
 import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
+import Loader from '../loader/component';
 
 const Layout = () => {
   const themePreferences = window.matchMedia(
@@ -27,7 +29,9 @@ const Layout = () => {
     <div className={styles.root} data-theme={isDark ? 'dark' : 'light'}>
       <Header toggleTheme={toggleTheme} />
       <main className={styles.main}>
-        <Outlet />
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
       </main>
     </div>
   );
