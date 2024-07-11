@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useMemo } from 'react';
 import Loader from '../loader/component';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
@@ -15,7 +15,10 @@ const CinemasContainer = ({ showAll, getSortedArray }) => {
 
   const cinemas = useSelector((state) => cinemaSelectors.selectAll(state));
 
-  const filteredCinemas = getSortedArray([...cinemas]);
+  const filteredCinemas = useMemo(
+    () => getSortedArray([...cinemas]),
+    [getSortedArray, cinemas]
+  );
 
   const options = useSelector((state) => selectOptions(state));
 
