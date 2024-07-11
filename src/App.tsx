@@ -1,9 +1,13 @@
 import { StoreProvider } from './redux/store-provider';
+import { lazy } from 'react';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './components/layout/component';
-import HomePage from './pages/home-page/component';
-import CinemasTablePage from './pages/cinemas-table-page/component';
+
+const HomePage = lazy(() => import('./pages/home-page/component'));
+const CinemasTablePage = lazy(
+  () => import('./pages/cinemas-table-page/component')
+);
 
 const router = createBrowserRouter([
   {
