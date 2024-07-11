@@ -21,3 +21,7 @@
 {"sort_field": "imdb_id", "budget", "original_language", "popularity", "release_date", "revenue", "runtime", "status", "vote_average" или "vote_count",
 "sort_order": направление сортировки: "asc" или "desc", по умолчанию "asc",
 } сервер отвечает так же, как будто эти поля в запросы пустые! В этой связи сортировка реализована на front-end.
+
+## upd 11.07.2024: Выполнена реализация пагинации и lazy loading - пункт 4. в ветке module2-task1
+
+Проект запускается также. Появилась проблема отображения всей базы фильмов, не помогает Lazy loading, в остальном реализованы все пункты Т.З.
