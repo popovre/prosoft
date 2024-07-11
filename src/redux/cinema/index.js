@@ -1,6 +1,5 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 import { getCinemas } from './thunks/get-cinemas';
-// import { useGetCinemasQuery } from '../services/api';
 
 const cinemaAdapter = createEntityAdapter();
 

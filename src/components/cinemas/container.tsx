@@ -1,11 +1,12 @@
-import Cinemas from './component';
-import Loader from '../../components/loader/component';
+import { lazy, Suspense } from 'react';
+import Loader from '../loader/component';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getCinemas } from '../../redux/cinema/thunks/get-cinemas';
 import { cinemaSelectors } from '../../redux/cinema';
 import { selectIsLoading } from '../../redux/ui/request';
 import { selectOptions } from '../../redux/query-option';
+const LazyCinemas = lazy(() => import('./component'));
 
 const CinemasContainer = ({ showAll, getSortedArray }) => {
   const [cinemasRequestId, setCinemaRequestId] = useState(0);
@@ -40,13 +41,15 @@ const CinemasContainer = ({ showAll, getSortedArray }) => {
       {isCinemasLoading ? (
         <Loader />
       ) : (
-        <Cinemas
-          pagesQty={pagesQty}
-          page={page}
-          setPage={setPage}
-          showAll={showAll}
-          cinemas={filteredCinemas}
-        />
+        <Suspense fallback={<Loader />}>
+          <LazyCinemas
+            pagesQty={pagesQty}
+            page={page}
+            setPage={setPage}
+            showAll={showAll}
+            cinemas={filteredCinemas}
+          />
+        </Suspense>
       )}
     </>
   );
