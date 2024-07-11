@@ -8,7 +8,9 @@ import { selectIsLoading } from '../../redux/ui/request';
 import { selectOptions } from '../../redux/query-option';
 
 const CinemasContainer = ({ showAll, getSortedArray }) => {
-  const [cinemasRequestId, setCinemaRequestId] = useState(null);
+  const [cinemasRequestId, setCinemaRequestId] = useState(0);
+  const [pagesQty, setPagesQty] = useState(0);
+  const [page, setPage] = useState(1);
 
   const cinemas = useSelector((state) =>
     getSortedArray(cinemaSelectors.selectAll(state).slice())
@@ -26,12 +28,25 @@ const CinemasContainer = ({ showAll, getSortedArray }) => {
     setCinemaRequestId(dispatch(getCinemas(options)).requestId);
   }, [options, dispatch]);
 
+  useEffect(() => {
+    setPagesQty(Math.ceil(cinemas.length / 20));
+    if (page > pagesQty) {
+      setPage(1);
+    }
+  }, [cinemas.length, page, pagesQty]);
+
   return (
     <>
       {isCinemasLoading ? (
         <Loader />
       ) : (
-        <Cinemas showAll={showAll} cinemas={cinemas} />
+        <Cinemas
+          pagesQty={pagesQty}
+          page={page}
+          setPage={setPage}
+          showAll={showAll}
+          cinemas={cinemas}
+        />
       )}
     </>
   );

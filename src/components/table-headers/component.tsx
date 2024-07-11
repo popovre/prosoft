@@ -2,18 +2,19 @@ import styles from './style.module.scss';
 import { headers } from './utils';
 import clsx from 'clsx';
 import Button from '../button/component';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setQuerySearch } from '../../redux/query-option';
 
 const TableHeaders = ({ sort, setSort }) => {
+  const [value, setValue] = useState('');
   const input = useRef<HTMLInputElement>(null);
 
   const dispatch = useDispatch();
 
   const onSearchButtonClick = () => {
-    if (input.current?.value) {
-      dispatch(setQuerySearch(String(input.current?.value)));
+    if (value) {
+      dispatch(setQuerySearch(String(value)));
     }
   };
 
@@ -53,9 +54,11 @@ const TableHeaders = ({ sort, setSort }) => {
       <label className={styles.label}>
         <input
           ref={input}
+          value={value}
           className={styles.search}
           placeholder="Search"
           type="text"
+          onChange={(evt) => setValue(evt.target.value)}
         />
         <Button onClick={onSearchButtonClick}>Искать</Button>
       </label>
