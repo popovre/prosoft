@@ -3,8 +3,10 @@ import styles from './style.module.scss';
 import { IoIosLink } from 'react-icons/io';
 import { useCinemaVision } from './use-cinema-vision';
 import { IoIosEyeOff } from 'react-icons/io';
+import clsx from 'clsx';
+import { memo } from 'react';
 
-const Cinema = ({ cinema }) => {
+const Cinema = memo(({ cinema, classNames }) => {
   const {
     content,
     setShowId,
@@ -32,7 +34,12 @@ const Cinema = ({ cinema }) => {
   } = useCinemaVision();
 
   return (
-    <ul className={styles.root}>
+    <ul
+      className={clsx(
+        styles.root,
+        classNames?.map((style) => styles[style])
+      )}
+    >
       <li
         onClick={() => {
           setShowId(!content.id);
@@ -338,6 +345,6 @@ const Cinema = ({ cinema }) => {
       </li>
     </ul>
   );
-};
+});
 
 export default Cinema;
