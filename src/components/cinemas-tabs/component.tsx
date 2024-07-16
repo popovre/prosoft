@@ -1,26 +1,28 @@
 import styles from './style.module.scss';
 import Button from '../button/component';
+import { IoMdAlbums } from 'react-icons/io';
+import { IoIosListBox } from 'react-icons/io';
 
 const CinemasTabs = ({ showAll, setShowAll }) => {
   return (
     <div className={styles.root}>
       <Button
-        className={styles.button}
+        classNames={['button']}
         disabled={showAll}
         onClick={() => {
           setShowAll(true);
         }}
       >
-        all
+        <IoIosListBox />
       </Button>
       <Button
-        className={styles.button}
+        classNames={['button']}
         disabled={!showAll}
         onClick={() => {
           setShowAll(false);
         }}
       >
-        pagination
+        <IoMdAlbums />
       </Button>
     </div>
   );

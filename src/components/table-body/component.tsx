@@ -8,7 +8,6 @@ const TableBody = ({ getSortedArray }) => {
 
   return (
     <div className={styles.root}>
-      <h2>Table body</h2>
       <CinemasTabs showAll={showAll} setShowAll={setShowAll} />
       <CinemasContainer getSortedArray={getSortedArray} showAll={showAll} />
     </div>

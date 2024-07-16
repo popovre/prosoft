@@ -18,7 +18,6 @@ const TableHeaders = ({ sort, setSort }) => {
 
   return (
     <div className={styles.root}>
-      <h2>Sorting and Filter</h2>
       <ul className={styles.list}>
         {headers.map((header, index) => (
           <li

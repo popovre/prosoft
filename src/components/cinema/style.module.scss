@@ -19,6 +19,16 @@
   }
 }
 
+.link {
+  background-color: transparent;
+  transition: color 0.3s;
+
+  &:hover {
+    background-color: transparent;
+    color: rgb(71, 74, 255);
+  }
+}
+
 .itemCinemaInfinite {
   height: fit-content;
 }
