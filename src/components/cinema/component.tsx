@@ -53,7 +53,15 @@ const Cinema = memo(({ cinema, classNames }) => {
         }}
       >
         adults:{' '}
-        {content.adult ? cinema.adults ? cinema.adults : `-` : <IoIosEyeOff />}
+        {content.adult ? (
+          cinema.adults ? (
+            cinema.adults
+          ) : (
+            `Empty`
+          )
+        ) : (
+          <IoIosEyeOff />
+        )}
       </li>
       <li
         onClick={() => {
@@ -77,7 +85,15 @@ const Cinema = memo(({ cinema, classNames }) => {
         }}
       >
         budget:{' '}
-        {content.budget ? cinema.budget ? cinema.budget : `-` : <IoIosEyeOff />}
+        {content.budget ? (
+          cinema.budget ? (
+            cinema.budget
+          ) : (
+            `Empty`
+          )
+        ) : (
+          <IoIosEyeOff />
+        )}
       </li>
       <li
         onClick={() => {
@@ -103,7 +119,7 @@ const Cinema = memo(({ cinema, classNames }) => {
               <IoIosLink />
             </Link>
           ) : (
-            `-`
+            `Empty`
           )
         ) : (
           <IoIosEyeOff />
@@ -119,7 +135,7 @@ const Cinema = memo(({ cinema, classNames }) => {
           cinema.imdb_id ? (
             cinema.imdb_id
           ) : (
-            `-`
+            `Empty`
           )
         ) : (
           <IoIosEyeOff />
@@ -135,7 +151,7 @@ const Cinema = memo(({ cinema, classNames }) => {
           cinema.original_language ? (
             cinema.original_language
           ) : (
-            `-`
+            `Empty`
           )
         ) : (
           <IoIosEyeOff />
@@ -151,7 +167,7 @@ const Cinema = memo(({ cinema, classNames }) => {
           cinema.original_title ? (
             cinema.original_title
           ) : (
-            `-`
+            `Empty`
           )
         ) : (
           <IoIosEyeOff />
@@ -167,7 +183,7 @@ const Cinema = memo(({ cinema, classNames }) => {
           cinema.overview ? (
             cinema.overview
           ) : (
-            `-`
+            `Empty`
           )
         ) : (
           <IoIosEyeOff />
@@ -183,7 +199,7 @@ const Cinema = memo(({ cinema, classNames }) => {
           cinema.popularity ? (
             cinema.popularity
           ) : (
-            `-`
+            `Empty`
           )
         ) : (
           <IoIosEyeOff />
@@ -227,7 +243,7 @@ const Cinema = memo(({ cinema, classNames }) => {
           cinema.release_date ? (
             cinema.release_date
           ) : (
-            `-`
+            `Empty`
           )
         ) : (
           <IoIosEyeOff />
@@ -243,7 +259,7 @@ const Cinema = memo(({ cinema, classNames }) => {
           cinema.revenue ? (
             cinema.revenue
           ) : (
-            `-`
+            `Empty`
           )
         ) : (
           <IoIosEyeOff />
@@ -259,7 +275,7 @@ const Cinema = memo(({ cinema, classNames }) => {
           cinema.runtime ? (
             cinema.runtime
           ) : (
-            `-`
+            `Empty`
           )
         ) : (
           <IoIosEyeOff />
@@ -285,7 +301,15 @@ const Cinema = memo(({ cinema, classNames }) => {
         }}
       >
         status:{' '}
-        {content.status ? cinema.status ? cinema.status : `-` : <IoIosEyeOff />}
+        {content.status ? (
+          cinema.status ? (
+            cinema.status
+          ) : (
+            `Empty`
+          )
+        ) : (
+          <IoIosEyeOff />
+        )}
       </li>
       <li
         onClick={() => {
@@ -297,7 +321,7 @@ const Cinema = memo(({ cinema, classNames }) => {
           cinema.tagline ? (
             cinema.tagline
           ) : (
-            `-`
+            `Empty`
           )
         ) : (
           <IoIosEyeOff />
@@ -309,7 +333,15 @@ const Cinema = memo(({ cinema, classNames }) => {
         }}
       >
         title:{' '}
-        {content.title ? cinema.title ? cinema.title : `-` : <IoIosEyeOff />}
+        {content.title ? (
+          cinema.title ? (
+            cinema.title
+          ) : (
+            `Empty`
+          )
+        ) : (
+          <IoIosEyeOff />
+        )}
       </li>
       <li
         onClick={() => {
@@ -321,7 +353,7 @@ const Cinema = memo(({ cinema, classNames }) => {
           cinema.vote_average ? (
             cinema.vote_average
           ) : (
-            `-`
+            `Empty`
           )
         ) : (
           <IoIosEyeOff />
@@ -337,7 +369,7 @@ const Cinema = memo(({ cinema, classNames }) => {
           cinema.vote_count ? (
             cinema.vote_count
           ) : (
-            `-`
+            `Empty`
           )
         ) : (
           <IoIosEyeOff />

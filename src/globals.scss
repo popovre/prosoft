@@ -72,11 +72,10 @@ button {
   background-color: var(--asc-btn);
   cursor: pointer;
 
-  transition: background-color 0.6s 0.1s, border-radius 0.2s 0.1s;
+  transition: border-radius 0.2s 0.1s;
   color: inherit;
 
   &:hover {
-    background-color: var(--asc-text-success);
     border-radius: 6px;
   }
 

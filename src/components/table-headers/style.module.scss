@@ -28,6 +28,7 @@
 }
 
 .search {
+  @include inputres;
   padding-inline: 5px;
   padding-block: 5px;
   border-radius: 6px;
@@ -36,6 +37,11 @@
   color: inherit;
   font-size: var(--asc-low-font);
   border: 2px solid var(--asc-border);
+  transition: border-color 0.4s 0.05s;
+
+  &:hover {
+    border-color: var(--asc-btn);
+  }
 }
 
 .active {
@@ -74,4 +80,9 @@
 
 .triangleDown {
   transform: rotate(180deg);
+}
+
+.icon {
+  width: 25px;
+  height: 25px;
 }

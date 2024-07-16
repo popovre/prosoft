@@ -9,4 +9,9 @@
   &:disabled {
     background-color: var(--asc-text-error);
   }
+
+  &:active {
+    transition: background-color 0.1s;
+    background-color: tomato;
+  }
 }

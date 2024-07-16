@@ -1,4 +1,5 @@
 .root {
+  @include content;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -15,7 +16,7 @@
 
 .link {
   font-size: inherit;
-  background-color: var(--asc-text-info);
+  background-color: #65d5c1;
   padding: 1rem;
   border-radius: 10px;
 }

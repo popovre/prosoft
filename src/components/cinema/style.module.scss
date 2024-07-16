@@ -9,17 +9,19 @@
   height: 100%;
 
   & li {
+    transition: color 0.3s 0.05s;
     display: flex;
     align-items: center;
     padding: 3px;
   }
 
   & li:hover {
-    outline: 1px dashed tomato;
+    color: tomato;
   }
 }
 
-.link {
+.link,
+[data-theme='dark'] .link {
   background-color: transparent;
   transition: color 0.3s;
 

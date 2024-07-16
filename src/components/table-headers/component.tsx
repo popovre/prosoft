@@ -5,6 +5,7 @@ import Button from '../button/component';
 import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setQuerySearch } from '../../redux/query-option';
+import { IoIosSearch } from 'react-icons/io';
 
 const TableHeaders = ({ sort, setSort }) => {
   const [value, setValue] = useState('');
@@ -57,7 +58,9 @@ const TableHeaders = ({ sort, setSort }) => {
           type="text"
           onChange={(evt) => setValue(evt.target.value)}
         />
-        <Button onClick={onSearchButtonClick}>Искать</Button>
+        <Button classNames={['button']} onClick={onSearchButtonClick}>
+          <IoIosSearch className={styles.icon} />
+        </Button>
       </label>
     </div>
   );
