@@ -3,11 +3,14 @@ import styles from './style.module.scss';
 import CustomPagination from '../custom-pagination/component';
 import { FixedSizeList as List, areEqual } from 'react-window';
 import { memo } from 'react';
-import memoize from 'memoize-one';
+import { useSelector } from 'react-redux';
+import { getViewState } from '../../redux/view';
 
 const VISIBLE_CINEMAS = 20;
 
-const Cinemas = ({ page, setPage, showAll, cinemas, pagesQty }) => {
+const Cinemas = ({ page, setPage, cinemas, pagesQty }) => {
+  const view = useSelector((state) => getViewState(state));
+
   const renderItem = memo(({ index }) => {
     const cinema = cinemas[index];
 
@@ -17,7 +20,7 @@ const Cinemas = ({ page, setPage, showAll, cinemas, pagesQty }) => {
   return (
     <div className={styles.root}>
       <p>cinemas found: {cinemas.length}</p>
-      {!showAll && (
+      {view === 'pagination' && (
         <>
           <div className={styles.information}>
             <p>pages: {pagesQty}</p>
@@ -26,7 +29,7 @@ const Cinemas = ({ page, setPage, showAll, cinemas, pagesQty }) => {
           <CustomPagination setPage={setPage} pagesQty={pagesQty} />
         </>
       )}
-      {!showAll ? (
+      {view === 'pagination' && (
         <ul className={styles.list}>
           {cinemas &&
             cinemas
@@ -37,19 +40,20 @@ const Cinemas = ({ page, setPage, showAll, cinemas, pagesQty }) => {
                 </li>
               ))}
         </ul>
-      ) : (
-        cinemas && (
-          <List
-            itemCount={cinemas.length}
-            height={500}
-            itemSize={VISIBLE_CINEMAS}
-            width="100%"
-          >
-            {renderItem}
-          </List>
-        )
       )}
-      {!showAll && <CustomPagination setPage={setPage} pagesQty={pagesQty} />}
+      {view === 'singlePage' && (
+        <List
+          itemCount={cinemas.length}
+          height={500}
+          itemSize={VISIBLE_CINEMAS}
+          width="100%"
+        >
+          {renderItem}
+        </List>
+      )}
+      {view === 'pagination' && (
+        <CustomPagination setPage={setPage} pagesQty={pagesQty} />
+      )}
     </div>
   );
 };

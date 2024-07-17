@@ -1,4 +1,4 @@
-export const headers = [
+export const sortHeaders = [
   { key: 'imdb_id' },
   { key: 'budget' },
   { key: 'original_language' },

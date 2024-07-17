@@ -1,10 +1,11 @@
-import { useState } from 'react';
 import TableBody from '../table-body/component';
 import TableHeaders from '../table-headers/component';
 import styles from './styles.module.scss';
+import { selectSort } from '../../redux/sort';
+import { useSelector } from 'react-redux';
 
 const Table = () => {
-  const [sort, setSort] = useState({ keyToSort: 'imdb_id', direction: 'asc' });
+  const sort = useSelector((state) => selectSort(state));
 
   const getSortedArray = (arrayToSort) => {
     if (sort.direction === 'asc') {
@@ -19,7 +20,7 @@ const Table = () => {
 
   return (
     <div className={styles.root}>
-      <TableHeaders sort={sort} setSort={setSort} />
+      <TableHeaders />
       <TableBody getSortedArray={getSortedArray} />
     </div>
   );

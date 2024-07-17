@@ -8,7 +8,7 @@ import { selectIsLoading } from '../../redux/ui/request';
 import { selectOptions } from '../../redux/query-option';
 const LazyCinemas = lazy(() => import('./component'));
 
-const CinemasContainer = ({ showAll, getSortedArray }) => {
+const CinemasContainer = ({ getSortedArray }) => {
   const [cinemasRequestId, setCinemaRequestId] = useState(0);
   const [pagesQty, setPagesQty] = useState(0);
   const [page, setPage] = useState(1);
@@ -49,7 +49,6 @@ const CinemasContainer = ({ showAll, getSortedArray }) => {
             pagesQty={pagesQty}
             page={page}
             setPage={setPage}
-            showAll={showAll}
             cinemas={filteredCinemas}
           />
         </Suspense>
