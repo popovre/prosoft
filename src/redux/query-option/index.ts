@@ -8,7 +8,8 @@ export const queryOptionSlice: Slice = createSlice({
       page: 0,
       page_size: 20,
       search: '',
-      sort_order: 'asc',
+      sort_order: 'desc',
+      sort_field: undefined,
     },
   },
   selectors: {

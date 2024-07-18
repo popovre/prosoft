@@ -115,7 +115,7 @@ const Cinema = memo(({ cinema, classNames }) => {
         homepage:
         {content.homepage ? (
           cinema.homepage ? (
-            <Link className={styles.link} to={cinema.homepage}>
+            <Link target="_blank" className={styles.link} to={cinema.homepage}>
               <IoIosLink />
             </Link>
           ) : (

@@ -20,6 +20,7 @@ const CinemasTabs = () => {
         disabled={view === 'singlePage'}
         onClick={() => {
           dispatch(setViewSinglePage());
+          
         }}
       >
         <IoIosListBox />

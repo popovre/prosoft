@@ -12,10 +12,13 @@ import { setSort } from '../../redux/sort';
 import { setQuerySearch, selectOptionsSearch } from '../../redux/query-option';
 
 import { IoIosSearch } from 'react-icons/io';
+import { getLoadingState } from '../../redux/cinema';
+import Loader from '../loader/component';
 
 const TableHeaders = () => {
   const input = useRef<HTMLInputElement>(null);
   const sort = useSelector((state) => selectSort(state));
+  const loadingState = useSelector((state) => getLoadingState(state));
 
   const [inputValue, setInputValue] = useState(
     useSelector((state) => selectOptionsSearch(state))
@@ -60,21 +63,25 @@ const TableHeaders = () => {
           </li>
         ))}
       </ul>
-      <label className={styles.label}>
-        <input
-          ref={input}
-          value={inputValue}
-          className={styles.search}
-          placeholder="Search"
-          type="text"
-          onChange={(evt) => {
-            setInputValue(evt.target.value);
-          }}
-        />
-        <Button classNames={['button']} onClick={onSearchButtonClick}>
-          <IoIosSearch className={styles.icon} />
-        </Button>
-      </label>
+      {loadingState === 'pending' ? (
+        <Loader />
+      ) : (
+        <label className={styles.label}>
+          <input
+            ref={input}
+            value={inputValue}
+            className={styles.search}
+            placeholder="Search"
+            type="text"
+            onChange={(evt) => {
+              setInputValue(evt.target.value);
+            }}
+          />
+          <Button classNames={['button']} onClick={onSearchButtonClick}>
+            <IoIosSearch className={styles.icon} />
+          </Button>
+        </label>
+      )}
     </div>
   );
 };
