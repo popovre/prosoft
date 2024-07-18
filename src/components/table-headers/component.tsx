@@ -26,7 +26,9 @@ const TableHeaders = () => {
   const dispatch = useDispatch();
 
   const onSearchButtonClick = () => {
-    dispatch(setQuerySearch(String(inputValue)));
+    dispatch(
+      setQuerySearch({ search: String(inputValue), pageSize: undefined })
+    );
   };
 
   return (
