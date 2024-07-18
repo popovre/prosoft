@@ -3,20 +3,3 @@
   flex-direction: column;
   row-gap: 1rem;
 }
-
-.list {
-  display: grid;
-  grid-template-columns: minmax(300px, 1fr);
-  grid-template-rows: auto-fill;
-  grid-auto-flow: row;
-  gap: 1rem;
-
-  @include desktop-w() {
-    grid-template-columns: repeat(2, minmax(400px, 1fr));
-  }
-}
-
-.information {
-  display: flex;
-  column-gap: 1rem;
-}

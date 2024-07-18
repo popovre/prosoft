@@ -7,6 +7,7 @@ import { cinemaSelectors } from '../../redux/cinema';
 import { selectIsLoading } from '../../redux/ui/request';
 import { selectOptions } from '../../redux/query-option';
 import { selectSort } from '../../redux/sort';
+import { getViewState } from '../../redux/view';
 const LazyCinemas = lazy(() => import('./component'));
 
 const CinemasContainer = () => {
@@ -15,8 +16,10 @@ const CinemasContainer = () => {
   const [page, setPage] = useState(1);
 
   const cinemas = useSelector((state) => cinemaSelectors.selectAll(state));
+  const cinemasLength = cinemas.length;
   const options = useSelector((state) => selectOptions(state));
   const sort = useSelector((state) => selectSort(state));
+  const view = useSelector((state) => getViewState(state));
 
   const getSortedArray = useCallback(
     (arrayToSort) => {
@@ -44,11 +47,11 @@ const CinemasContainer = () => {
   }, [options, dispatch]);
 
   useEffect(() => {
-    setPagesQty(Math.ceil(cinemas.length / 20));
+    setPagesQty(Math.ceil(cinemasLength / 20));
     if (page > pagesQty) {
       setPage(1);
     }
-  }, [cinemas.length, page, pagesQty]);
+  }, [cinemasLength, page, pagesQty]);
 
   const isCinemasLoading = useSelector(
     (state) => cinemasRequestId && selectIsLoading(state, cinemasRequestId)
@@ -61,10 +64,12 @@ const CinemasContainer = () => {
       ) : (
         <Suspense fallback={<Loader />}>
           <LazyCinemas
+            view={view}
             pagesQty={pagesQty}
             page={page}
             setPage={setPage}
             cinemas={filteredCinemas}
+            cinemasLength={cinemasLength}
           />
         </Suspense>
       )}
