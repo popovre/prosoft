@@ -19,45 +19,50 @@ const CinemasListSinglePage = ({
 
   const createCinemas = (items) => {
     let cinemasArray = [];
-    for (let i = 0; i < records; i++) {
-      cinemasArray.push(
-        <div key={i}>
-          <Cinema cinema={items[i]} />{' '}
-        </div>
-      );
+    if (items) {
+      for (let i = 0; i < records; i++) {
+        if (!items[i]) {
+          break;
+        }
+        cinemasArray.push(
+          <li key={items[i].id}>
+            <Cinema cinema={items[i]} />
+          </li>
+        );
+      }
     }
     return cinemasArray;
   };
 
   const loadMore = () => {
-    if (records === cinemasLength) {
+    if (records >= cinemasLength) {
       setHasMore(false);
     } else {
       setTimeout(() => {
         setRecords(records + VISIBLE_CINEMAS);
-      }, 1000);
+      }, 4000);
     }
   };
 
   return (
     <div className={styles.root}>
-      <InfiniteScroll
-        pageStart={0}
-        loadMore={loadMore}
-        hasMore={hasMore}
-        useWindow={false}
-        loader={<Loader />}
-      >
-        {
-          // cinemas &&
-          //   cinemas?.map((cinema) => (
-          //     <li key={cinema.id}>
-          //       <Cinema cinema={cinema} />
-          //     </li>
-          //   ))
-          createCinemas(cinemas)
-        }
-      </InfiniteScroll>
+      {cinemas.length ? (
+        <InfiniteScroll
+          pageStart={0}
+          loadMore={loadMore}
+          hasMore={hasMore}
+          useWindow={false}
+          loader={<Loader key="loader" />}
+        >
+          {cinemas && (
+            <ul key="cinemasList" className={styles.list}>
+              {createCinemas(cinemas)}
+            </ul>
+          )}
+        </InfiniteScroll>
+      ) : (
+        <p className={styles.errorMeassage}>Cinemas not found...</p>
+      )}
     </div>
   );
 };

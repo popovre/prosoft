@@ -15,3 +15,10 @@
     grid-template-columns: repeat(2, minmax(400px, 1fr));
   }
 }
+
+.errorMeassage {
+  padding-top: 30%;
+  text-align: center;
+  color: tomato;
+  font-size: var(--asc-big-font);
+}
