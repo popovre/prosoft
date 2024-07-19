@@ -3,15 +3,13 @@ import Loader from '../loader/component';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getCinemas } from '../../redux/cinema/thunks/get-cinemas';
-import { cinemaSelectors } from '../../redux/cinema';
-import { selectIsLoading } from '../../redux/ui/request';
+import { cinemaSelectors, getLoadingState } from '../../redux/cinema';
 import { selectOptions } from '../../redux/query-option';
 import { selectSort } from '../../redux/sort';
 import { getViewState } from '../../redux/view';
 const LazyCinemas = lazy(() => import('./component'));
 
 const CinemasContainer = () => {
-  const [cinemasRequestId, setCinemaRequestId] = useState(0);
   const [pagesQty, setPagesQty] = useState(0);
   const [page, setPage] = useState(1);
 
@@ -20,6 +18,7 @@ const CinemasContainer = () => {
   const options = useSelector((state) => selectOptions(state));
   const sort = useSelector((state) => selectSort(state));
   const view = useSelector((state) => getViewState(state));
+  const loadingState = useSelector((state) => getLoadingState(state));
 
   const getSortedArray = useCallback(
     (arrayToSort) => {
@@ -43,7 +42,12 @@ const CinemasContainer = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setCinemaRequestId(dispatch(getCinemas(options)).requestId);
+    const promise = dispatch(getCinemas(options));
+
+    return () => {
+      // `createAsyncThunk` attaches an `abort()` method to the promise
+      promise.abort();
+    };
   }, [options, dispatch]);
 
   useEffect(() => {
@@ -53,13 +57,9 @@ const CinemasContainer = () => {
     }
   }, [cinemasLength, page, pagesQty]);
 
-  const isCinemasLoading = useSelector(
-    (state) => cinemasRequestId && selectIsLoading(state, cinemasRequestId)
-  );
-
   return (
     <>
-      {isCinemasLoading ? (
+      {loadingState === 'pending' ? (
         <Loader />
       ) : (
         <Suspense fallback={<Loader />}>
