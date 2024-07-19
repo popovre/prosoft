@@ -2,7 +2,7 @@ import { Container, Pagination, Stack } from '@mui/material';
 
 const CustomPagination = ({ pagesQty, setPage }) => {
   return (
-    <Container sx={{ marginTop: 2, marginBottom: 2 }}>
+    <Container sx={{ marginTop: 2, marginBottom: 2, width: 'fit-content' }}>
       <Stack spacing={2}>
         {pagesQty && (
           <Pagination

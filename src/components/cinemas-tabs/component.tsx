@@ -1,26 +1,38 @@
 import styles from './style.module.scss';
 import Button from '../button/component';
+import { IoMdAlbums } from 'react-icons/io';
+import { IoIosListBox } from 'react-icons/io';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  getViewState,
+  setViewPagination,
+  setViewSinglePage,
+} from '../../redux/view';
 
-const CinemasTabs = ({ showAll, setShowAll }) => {
+const CinemasTabs = () => {
+  const view = useSelector((state) => getViewState(state));
+  const dispatch = useDispatch();
+
   return (
     <div className={styles.root}>
       <Button
-        className={styles.button}
-        disabled={showAll}
+        classNames={['button']}
+        disabled={view === 'singlePage'}
         onClick={() => {
-          setShowAll(true);
+          dispatch(setViewSinglePage());
+          
         }}
       >
-        all
+        <IoIosListBox />
       </Button>
       <Button
-        className={styles.button}
-        disabled={!showAll}
+        classNames={['button']}
+        disabled={view === 'pagination'}
         onClick={() => {
-          setShowAll(false);
+          dispatch(setViewPagination());
         }}
       >
-        pagination
+        <IoMdAlbums />
       </Button>
     </div>
   );

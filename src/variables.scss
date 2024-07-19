@@ -34,13 +34,14 @@
   --asc-text-muted: #9ca3af;
   --asc-text-inverted: #fff;
   --asc-text-info: #253985;
-  --asc-text-success: #285231;
+  --asc-text-success: #129e31;
   --asc-text-attention: #73321b;
   --asc-text-error: #752522;
   --asc-logo: #b21a1a;
   --asc-brand: #111827;
   --asc-brand-emphasis: #101010;
   --asc-brand-text: #fff;
+  --asc-btn: #be5be8;
 
   /* screen sizes */
   --tablet-width: 768px;
@@ -62,6 +63,7 @@
   --desktop-padding-block: 90px;
 
   // radius
+  --element-border-radius: 8px;
   --mobile-low-border-radius: 16px;
   --mobile-border-radius: 22px;
   --desktop-border-radius: 32px;

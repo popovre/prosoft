@@ -6,29 +6,35 @@ export const queryOptionSlice: Slice = createSlice({
     options: {
       sort: '',
       page: 0,
-      page_size: undefined,
+      page_size: 20,
       search: '',
-      sort_order: 'asc',
+      sort_order: 'desc',
+      sort_field: undefined,
     },
   },
   selectors: {
     selectOptions: (state) => state.options,
+    selectOptionsSearch: (state) => state.options.search,
   },
   reducers: {
-    setQuerySort(state, sort) {
-      state.options.sort = sort.payload;
+    setQuerySort(state, action) {
+      state.options.sort = action.payload.sort;
+      state.options.page_size = action.payload.pageSize;
     },
-    setQuerySearch(state, search) {
-      state.options.search = search.payload;
+    setQuerySearch(state, action) {
+      state.options.search = action.payload.search;
+      state.options.page_size = action.payload.pageSize;
     },
-    setQueryStartPage(state, startPage) {
-      state.options.page = startPage.payload;
+    setQueryStartPage(state, action) {
+      state.options.page = action.payload.startPage;
+      state.options.page_size = action.payload.pageSize;
     },
-    setQueryPageAmount(state, pageAmount) {
-      state.options.page_size = pageAmount.payload;
+    setQueryPageSize(state, action) {
+      state.options.page_size = action.payload.pageSize;
     },
-    setQuerySortOrder(state, sortOrder) {
-      state.options.sort_order = sortOrder.payload;
+    setQuerySortOrder(state, action) {
+      state.options.sort_order = action.payload.sortOrder;
+      state.options.page_size = action.payload.pageSize;
     },
   },
 });
@@ -36,9 +42,10 @@ export const queryOptionSlice: Slice = createSlice({
 export const {
   setQuerySort,
   setQueryStartPage,
-  setQueryPageAmount,
+  setQueryPageSize,
   setQuerySearch,
   setQuerySortOrder,
 } = queryOptionSlice.actions;
 
-export const { selectOptions } = queryOptionSlice.selectors;
+export const { selectOptions, selectOptionsSearch } =
+  queryOptionSlice.selectors;

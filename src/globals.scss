@@ -20,7 +20,8 @@
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
-  button {
+  button,
+  a {
     background-color: #535bf2;
   }
 }
@@ -39,7 +40,7 @@ body {
   margin: 0;
   padding: 0;
   font-weight: 400;
-  font-size: var(--asc-normal-font);
+  font-size: var(--asc-low-font);
   font-style: normal;
 
   color: var(--black1);
@@ -48,10 +49,40 @@ body {
   -moz-osx-font-smoothing: graysasce;
 }
 
+button {
+  @include btnres;
+
+  &:disabled {
+    opacity: 0.5;
+    background-color: var(--asc-btn);
+  }
+}
+
 a {
-  color: inherit;
   text-decoration: none;
+}
+
+a,
+button {
+  border-radius: var(--element-border-radius);
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--asc-btn);
   cursor: pointer;
+
+  transition: border-radius 0.2s 0.1s;
+  color: inherit;
+
+  &:hover {
+    border-radius: 6px;
+  }
+
+  &:focus,
+  &:focus-visible {
+    border: 2px auto var(--asc-text-attention);
+  }
 }
 
 img {
@@ -87,23 +118,4 @@ ul {
   overflow: hidden;
   border: 0;
   clip: rect(0, 0, 0, 0);
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #dc0707;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }

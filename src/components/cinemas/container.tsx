@@ -1,4 +1,4 @@
-import { lazy, Suspense, useMemo } from 'react';
+import { lazy, Suspense, useCallback, useMemo } from 'react';
 import Loader from '../loader/component';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
@@ -6,24 +6,38 @@ import { getCinemas } from '../../redux/cinema/thunks/get-cinemas';
 import { cinemaSelectors } from '../../redux/cinema';
 import { selectIsLoading } from '../../redux/ui/request';
 import { selectOptions } from '../../redux/query-option';
+import { selectSort } from '../../redux/sort';
+import { getViewState } from '../../redux/view';
 const LazyCinemas = lazy(() => import('./component'));
 
-const CinemasContainer = ({ showAll, getSortedArray }) => {
+const CinemasContainer = () => {
   const [cinemasRequestId, setCinemaRequestId] = useState(0);
   const [pagesQty, setPagesQty] = useState(0);
   const [page, setPage] = useState(1);
 
   const cinemas = useSelector((state) => cinemaSelectors.selectAll(state));
+  const cinemasLength = cinemas.length;
+  const options = useSelector((state) => selectOptions(state));
+  const sort = useSelector((state) => selectSort(state));
+  const view = useSelector((state) => getViewState(state));
+
+  const getSortedArray = useCallback(
+    (arrayToSort) => {
+      if (sort.direction === 'asc') {
+        return arrayToSort.sort((a, b) =>
+          a[sort.keyToSort] > b[sort.keyToSort] ? 1 : -1
+        );
+      }
+      return arrayToSort.sort((a, b) =>
+        a[sort.keyToSort] > b[sort.keyToSort] ? -1 : 1
+      );
+    },
+    [sort.direction, sort.keyToSort]
+  );
 
   const filteredCinemas = useMemo(
     () => getSortedArray([...cinemas]),
-    [getSortedArray, cinemas]
-  );
-
-  const options = useSelector((state) => selectOptions(state));
-
-  const isCinemasLoading = useSelector(
-    (state) => cinemasRequestId && selectIsLoading(state, cinemasRequestId)
+    [cinemas, getSortedArray]
   );
 
   const dispatch = useDispatch();
@@ -33,11 +47,15 @@ const CinemasContainer = ({ showAll, getSortedArray }) => {
   }, [options, dispatch]);
 
   useEffect(() => {
-    setPagesQty(Math.ceil(cinemas.length / 20));
+    setPagesQty(Math.ceil(cinemasLength / 20));
     if (page > pagesQty) {
       setPage(1);
     }
-  }, [cinemas.length, page, pagesQty]);
+  }, [cinemasLength, page, pagesQty]);
+
+  const isCinemasLoading = useSelector(
+    (state) => cinemasRequestId && selectIsLoading(state, cinemasRequestId)
+  );
 
   return (
     <>
@@ -46,11 +64,12 @@ const CinemasContainer = ({ showAll, getSortedArray }) => {
       ) : (
         <Suspense fallback={<Loader />}>
           <LazyCinemas
+            view={view}
             pagesQty={pagesQty}
             page={page}
             setPage={setPage}
-            showAll={showAll}
             cinemas={filteredCinemas}
+            cinemasLength={cinemasLength}
           />
         </Suspense>
       )}
